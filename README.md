@@ -1,5 +1,5 @@
 Ribbit
 ======
 
-Team Treehouse project ("Build a Self-Destructing Message Android App") for Android Development track.
+Team Treehouse project ("Build a Self-Destructing Message Android App") for the Android Development track.
 Interested in trying out Treehouse? If so, please use my referral link: http://referrals.trhou.se/ralphcacho
