@@ -65,7 +65,8 @@ public class EditFriendsActivity extends ListActivity {
                         usernames[i] = user.getUsername();
                         i++;
                     }
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(EditFriendsActivity.this,
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                            EditFriendsActivity.this,
                             android.R.layout.simple_list_item_checked,
                             usernames);
                     setListAdapter(adapter);
