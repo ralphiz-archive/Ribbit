@@ -11,7 +11,8 @@ import com.parse.ParseObject;
 public class RibbitApplication extends Application {
     @Override
     public void onCreate() {
-        Parse.initialize(this, "sLdmpXU5x1dtA0CpkOBZOnZKN9pLp63njILjDIIW", "Ow8tCudCEEcNDXLpTyqyWIq6zfP6h4EEwUSKYPBO");
-
+        Parse.initialize(this,
+                "sLdmpXU5x1dtA0CpkOBZOnZKN9pLp63njILjDIIW",
+                "Ow8tCudCEEcNDXLpTyqyWIq6zfP6h4EEwUSKYPBO");
     }
 }
