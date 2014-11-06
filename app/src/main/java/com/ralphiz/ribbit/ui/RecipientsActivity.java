@@ -1,4 +1,4 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.ui;
+package com.ralphiz.ribbit.ui;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -22,9 +22,9 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.utils.FileHelper;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.utils.ParseConstants;
 import com.ralphiz.ribbit.R;
+import com.ralphiz.ribbit.utils.FileHelper;
+import com.ralphiz.ribbit.utils.ParseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,8 +84,7 @@ public class RecipientsActivity extends ListActivity {
                             android.R.layout.simple_list_item_checked,
                             usernames);
                     setListAdapter(adapter);
-                }
-                else {
+                } else {
                     Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
                     builder.setMessage(e.getMessage())
@@ -125,12 +124,11 @@ public class RecipientsActivity extends ListActivity {
                     // Error
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
                     builder.setMessage(getString(R.string.error_selecting_file))
-                    .setTitle(getString(R.string.error_selecting_file_title))
-                    .setPositiveButton(android.R.string.ok, null);
+                            .setTitle(getString(R.string.error_selecting_file_title))
+                            .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                }
-                else {
+                } else {
                     send(message);
                     finish();
                 }
@@ -147,8 +145,7 @@ public class RecipientsActivity extends ListActivity {
                 if (e == null) {
                     // Success!
                     Toast.makeText(RecipientsActivity.this, getString(R.string.success_message), Toast.LENGTH_LONG).show();
-                }
-                else {
+                } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(RecipientsActivity.this);
                     builder.setMessage(getString(R.string.error_sending_message))
                             .setTitle(getString(R.string.error_selecting_file_title))
@@ -171,8 +168,7 @@ public class RecipientsActivity extends ListActivity {
 
         if (fileBytes == null) {
             return null;
-        }
-        else {
+        } else {
             if (mFileType.equals(ParseConstants.TYPE_IMAGE)) {
                 fileBytes = FileHelper.reduceImageForUpload(fileBytes);
             }
@@ -202,8 +198,7 @@ public class RecipientsActivity extends ListActivity {
 
         if (l.getCheckedItemCount() > 0) {
             mSendMenuItem.setVisible(true);
-        }
-        else {
+        } else {
             mSendMenuItem.setVisible(false);
         }
     }

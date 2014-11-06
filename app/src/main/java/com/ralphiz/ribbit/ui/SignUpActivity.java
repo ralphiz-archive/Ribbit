@@ -1,4 +1,4 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.ui;
+package com.ralphiz.ribbit.ui;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -9,79 +9,84 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 import com.ralphiz.ribbit.R;
 
 
-public class LoginActivity extends Activity {
+public class SignUpActivity extends Activity {
 
     protected EditText mUsername;
     protected EditText mPassword;
-    protected Button mLoginButton;
-    protected TextView mSignUpTextView;
+    protected EditText mEmail;
+    protected Button mSignUpButton;
+    protected Button mCancelButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_up);
 
         ActionBar actionBar = getActionBar();
         actionBar.hide(); // Can also use getActionBar().hide();
 
-        mSignUpTextView = (TextView) findViewById(R.id.signUpText);
-        mSignUpTextView.setOnClickListener(new View.OnClickListener() {
+        mUsername = (EditText) findViewById(R.id.usernameField);
+        mPassword = (EditText) findViewById(R.id.passwordField);
+        mEmail = (EditText) findViewById(R.id.emailField);
+
+        mCancelButton = (Button) findViewById(R.id.cancelButton);
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, SignUpActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
-        mUsername = (EditText) findViewById(R.id.usernameField);
-        mPassword = (EditText) findViewById(R.id.passwordField);
-        mLoginButton = (Button) findViewById(R.id.loginButton);
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
+        mSignUpButton = (Button) findViewById(R.id.signupButton);
+        mSignUpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 String username = mUsername.getText().toString();
                 String password = mPassword.getText().toString();
+                String email = mEmail.getText().toString();
 
                 username = username.trim();
                 password = password.trim();
+                email = email.trim();
 
-                if (username.isEmpty() || password.isEmpty()) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage(R.string.login_error_message)
-                            .setTitle(R.string.login_error_message)
+                if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
+                    builder.setMessage(R.string.signup_error_message)
+                            .setTitle(R.string.signup_error_title)
                             .setPositiveButton(android.R.string.ok, null);
                     AlertDialog dialog = builder.create();
                     dialog.show();
-                }
-                else {
-                    // Log in
+                } else {
+                    // Create the new user
                     setProgressBarIndeterminateVisibility(true);
-                    ParseUser.logInInBackground(username, password, new LogInCallback() {
+                    ParseUser newUser = new ParseUser();
+                    newUser.setUsername(username);
+                    newUser.setPassword(password);
+                    newUser.setEmail(email);
+                    newUser.signUpInBackground(new SignUpCallback() {
                         @Override
-                        public void done(ParseUser parseUser, ParseException e) {
+                        public void done(ParseException e) {
 
                             setProgressBarIndeterminateVisibility(false);
                             if (e == null) {
-                                // Success!
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                // Success
+                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
-                            }
-                            else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(SignUpActivity.this);
                                 builder.setMessage(e.getMessage())
-                                        .setTitle(R.string.login_error_title)
+                                        .setTitle(R.string.signup_error_title)
                                         .setPositiveButton(android.R.string.ok, null);
                                 AlertDialog dialog = builder.create();
                                 dialog.show();

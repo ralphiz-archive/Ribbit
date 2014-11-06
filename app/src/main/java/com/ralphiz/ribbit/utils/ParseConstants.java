@@ -1,4 +1,4 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.utils;
+package com.ralphiz.ribbit.utils;
 
 /**
  * Created by RALNISE on 10/28/2014.

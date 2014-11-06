@@ -1,4 +1,4 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.ui;
+package com.ralphiz.ribbit.ui;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -15,8 +15,8 @@ import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.utils.ParseConstants;
 import com.ralphiz.ribbit.R;
+import com.ralphiz.ribbit.utils.ParseConstants;
 
 import java.util.List;
 
@@ -38,13 +38,13 @@ public class EditFriendsActivity extends ListActivity {
     }
 
     @Override
-        protected void onResume() {
-            super.onResume();
+    protected void onResume() {
+        super.onResume();
 
-            mCurrentUser = ParseUser.getCurrentUser();
-            mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
+        mCurrentUser = ParseUser.getCurrentUser();
+        mFriendsRelation = mCurrentUser.getRelation(ParseConstants.KEY_FRIENDS_RELATION);
 
-            setProgressBarIndeterminateVisibility(true);
+        setProgressBarIndeterminateVisibility(true);
 
         ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.orderByAscending(ParseConstants.KEY_USERNAME);
@@ -71,8 +71,7 @@ public class EditFriendsActivity extends ListActivity {
                     setListAdapter(adapter);
 
                     addFriendCheckmarkes();
-                }
-                else {
+                } else {
                     Log.e(TAG, e.getMessage());
                     AlertDialog.Builder builder = new AlertDialog.Builder(EditFriendsActivity.this);
                     builder.setMessage(e.getMessage())
@@ -100,8 +99,7 @@ public class EditFriendsActivity extends ListActivity {
                             }
                         }
                     }
-                }
-                else {
+                } else {
                     Log.e(TAG, e.getMessage());
                 }
             }
@@ -116,8 +114,7 @@ public class EditFriendsActivity extends ListActivity {
             // Add friend
             mFriendsRelation.add(mUsers.get(position));
 
-        }
-        else {
+        } else {
             // Remove friend
             mFriendsRelation.remove(mUsers.get(position));
         }

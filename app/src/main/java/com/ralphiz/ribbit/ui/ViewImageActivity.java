@@ -1,10 +1,8 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.ui;
+package com.ralphiz.ribbit.ui;
 
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.ralphiz.ribbit.R;
@@ -33,6 +31,6 @@ public class ViewImageActivity extends Activity {
             public void run() {
                 finish();
             }
-        }, 10*1000);
+        }, 20 * 1000);
     }
 }

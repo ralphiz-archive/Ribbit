@@ -1,18 +1,20 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.adapters;
+package com.ralphiz.ribbit.adapters;
+
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.ralphiz.ribbit.R;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.ui.FriendsFragment;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.ui.InboxFragment;
+import com.ralphiz.ribbit.ui.FriendsFragment;
+import com.ralphiz.ribbit.ui.InboxFragment;
 
 import java.util.Locale;
 
 /**
  * Created by RALNISE on 10/27/2014.
  */
+
 /**
  * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
@@ -59,7 +61,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     }
 
     public int getIcon(int position) {
-        Locale l = Locale.getDefault();
         switch (position) {
             case 0:
                 return R.drawable.ic_tab_inbox;

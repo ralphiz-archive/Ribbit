@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    >
+    android:background="@android:color/transparent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -11,7 +10,7 @@
         android:layout_marginLeft="@dimen/inbox_horizontal_margin"
         android:layout_marginRight="@dimen/inbox_horizontal_margin"
         android:layout_marginTop="@dimen/inbox_vertical_margin"
-        android:background="@android:color/white" >
+        android:background="@android:color/white">
 
         <ImageView
             android:id="@+id/messageIcon"
@@ -27,10 +26,10 @@
             android:id="@+id/senderLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/messageIcon"
             android:layout_alignParentLeft="true"
-            android:paddingTop="@dimen/message_vertical_padding"
+            android:layout_toLeftOf="@+id/messageIcon"
             android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/message_vertical_padding"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="16sp" />
 
@@ -41,10 +40,10 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@id/senderLabel"
             android:layout_toLeftOf="@id/messageIcon"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/message_vertical_padding"
-            android:textSize="12sp"
-            android:textColor="@color/light_gray"/>
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:textColor="@color/light_gray"
+            android:textSize="12sp" />
     </RelativeLayout>
 
 </LinearLayout>

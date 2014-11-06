@@ -1,4 +1,4 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.adapters;
+package com.ralphiz.ribbit.adapters;
 
 import android.content.Context;
 import android.text.format.DateUtils;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.parse.ParseObject;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.utils.ParseConstants;
 import com.ralphiz.ribbit.R;
+import com.ralphiz.ribbit.utils.ParseConstants;
 
 import java.util.Date;
 import java.util.List;
@@ -40,8 +40,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
             holder.nameLabel = (TextView) convertView.findViewById(R.id.senderLabel);
             holder.timeLabel = (TextView) convertView.findViewById(R.id.timeLabel);
             convertView.setTag(holder);
-        }
-        else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
@@ -55,8 +54,7 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
 
         if (message.getString(ParseConstants.KEY_FILE_TYPE).equals(ParseConstants.TYPE_IMAGE)) {
             holder.iconImageView.setImageResource(R.drawable.ic_picture);
-        }
-        else {
+        } else {
             holder.iconImageView.setImageResource(R.drawable.ic_video);
         }
         holder.nameLabel.setText(message.getString(ParseConstants.KEY_SENDER_NAME));
@@ -64,15 +62,15 @@ public class MessageAdapter extends ArrayAdapter<ParseObject> {
         return convertView;
     }
 
-    private static class ViewHolder {
-        ImageView iconImageView;
-        TextView nameLabel;
-        TextView timeLabel;
-    }
-
     public void refill(List<ParseObject> messages) {
         mMessages.clear();
         mMessages.addAll(messages);
         notifyDataSetChanged();
+    }
+
+    private static class ViewHolder {
+        ImageView iconImageView;
+        TextView nameLabel;
+        TextView timeLabel;
     }
 }

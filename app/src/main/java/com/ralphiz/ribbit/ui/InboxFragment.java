@@ -1,4 +1,4 @@
-package com.ralphiz.ribbit.com.ralphiz.ribbit.ui;
+package com.ralphiz.ribbit.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -17,9 +16,9 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.adapters.MessageAdapter;
-import com.ralphiz.ribbit.com.ralphiz.ribbit.utils.ParseConstants;
 import com.ralphiz.ribbit.R;
+import com.ralphiz.ribbit.adapters.MessageAdapter;
+import com.ralphiz.ribbit.utils.ParseConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +30,15 @@ public class InboxFragment extends ListFragment {
 
     protected List<ParseObject> mMessages;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
+    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
+        @Override
+        public void onRefresh() {
+            retrieveMessages();
+        }
+    };
 
     @Override
-    public View onCreateView (LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle saveInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inbox, container, false);
 
@@ -84,8 +89,7 @@ public class InboxFragment extends ListFragment {
                                 getListView().getContext(),
                                 mMessages);
                         setListAdapter(adapter);
-                    }
-                    else {
+                    } else {
                         // Refill the adapter!
                         ((MessageAdapter) getListView().getAdapter()).refill(mMessages);
                     }
@@ -108,8 +112,7 @@ public class InboxFragment extends ListFragment {
             Intent intent = new Intent(getActivity(), ViewImageActivity.class);
             intent.setData(fileUri);
             startActivity(intent);
-        }
-        else {
+        } else {
             // View the video
             Intent intent = new Intent(Intent.ACTION_VIEW, fileUri);
             intent.setDataAndType(fileUri, "video/*");
@@ -122,8 +125,7 @@ public class InboxFragment extends ListFragment {
         if (ids.size() == 1) {
             // Last recipient - delete the whole thing!
             message.deleteInBackground();
-        }
-        else {
+        } else {
             // Remove the recipient and save.
             ids.remove(ParseUser.getCurrentUser().getObjectId());
 
@@ -135,11 +137,4 @@ public class InboxFragment extends ListFragment {
             message.saveInBackground();
         }
     }
-
-    protected SwipeRefreshLayout.OnRefreshListener mOnRefreshListener = new SwipeRefreshLayout.OnRefreshListener() {
-        @Override
-        public void onRefresh() {
-            retrieveMessages();
-        }
-    };
 }
