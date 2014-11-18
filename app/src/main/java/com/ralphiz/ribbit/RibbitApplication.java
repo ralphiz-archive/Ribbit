@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.parse.Parse;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.PushService;
 import com.ralphiz.ribbit.ui.MainActivity;
@@ -17,8 +16,8 @@ public class RibbitApplication extends Application {
     @Override
     public void onCreate() {
         Parse.initialize(this,
-                "sLdmpXU5x1dtA0CpkOBZOnZKN9pLp63njILjDIIW",
-                "Ow8tCudCEEcNDXLpTyqyWIq6zfP6h4EEwUSKYPBO");
+                "Enter Parse.com Application ID here.",
+                "Enter Parse.com Client Key here.");
         PushService.setDefaultPushCallback(this, MainActivity.class);
         ParseInstallation.getCurrentInstallation().saveInBackground();
     }
